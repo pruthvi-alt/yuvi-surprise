@@ -192,13 +192,8 @@
 </head>
 <body>
   <h1>Hi Yuvi ❤️</h1>
-
-  <div id="countdown" class="countdown">
-    Just <span id="time"></span> left until we finally hug again 🤗
-  </div>
-
+  <div id="countdown" class="countdown">Just <span id="time"></span> until we hug again 🤗</div>
   <div class="typewriter" id="message"></div>
-
   <img src="couple.png" alt="Couple under moon" class="moon-scene" />
   <div class="caption">Someday, this will be real... 🌙</div>
 
@@ -207,18 +202,19 @@
     I don’t just love you for who you are — I love you for who I become when I’m with you.
     You inspire me, calm me, challenge me, and complete me.
     One day, we’ll look back at this distance and smile, because love like ours only grows.
-    from nothing to everything we will make our bond strongest that no insecurities can break my dummy.
+    From nothing to everything, our bond will grow stronger than any insecurity. 🌈
   </div>
 
   <div class="scratch-container">
     <div id="scratch-card"></div>
-    <p style="color:white; font-size:1.2em;">🐷 You found the hidden pig surprise! 🐷</p>
+    <p style="color:white; font-size:1.2em;">You found the piggy! 🐷💖</p>
   </div>
+
+  <a href="https://youtu.be/7GRz-zt8RuE?si=Z-r3OGYWk1dyBX9o" target="_blank" class="secret-btn">🎵 Our Song</a>
 
   <button class="secret-btn" onclick="showReply()">✍️ Write me back</button>
   <div id="reply-box" style="display: none; margin: 40px auto; max-width: 90%;">
-    <textarea id="yuviMessage" rows="5" placeholder="Your words mean the world to me..."></textarea>
-    <br>
+    <textarea id="yuviMessage" rows="5" placeholder="Your words mean the world to me..."></textarea><br>
     <button onclick="sendMessage()">📩 Send to your baby</button>
   </div>
 
@@ -226,7 +222,7 @@
   <div class="hearts" id="hearts"></div>
 
   <script>
-    const msg = "Hey mrs yuvika, so this is to remind you how much I love you. I know this isn't something big but I just want you to feel me near, always. Yesterday was tough but we fought well, and we’ll keep fighting for each other my love ❤️";
+    const msg = "Hey mrs yuvika, this is to remind you how much I love you. No matter what, I just want you to feel me near. Yesterday was tough but we fought well. We'll keep fighting for our love ❤️";
     let i = 0;
     function type() {
       if (i < msg.length) {
@@ -249,18 +245,13 @@
 
     function sendMessage() {
       const msg = document.getElementById("yuviMessage").value.trim();
-      if (!msg) {
-        alert("Type something sweet first, love 🌸");
-        return;
-      }
-
+      if (!msg) return alert("Type something sweet first, love 🌸");
       fetch("https://script.google.com/macros/s/AKfycbzZSF4bBQm0pUSFHqMAMmizgs75HGFb0TFTHjhsBs4kVkvP-Oe-poUZXS08qmqYlWcFwA/exec", {
         method: "POST",
         mode: "no-cors",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: `message=${encodeURIComponent(msg)}`
       });
-
       alert("Aww, message sent to your baby 💌");
       document.getElementById("yuviMessage").value = "";
     }
@@ -272,47 +263,67 @@
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.fontSize = `${16 + Math.random() * 24}px`;
       heart.style.animationDuration = `${4 + Math.random() * 4}s`;
-      document.getElementById("hearts").appendChild(heart);
+            document.getElementById("hearts").appendChild(heart);
       setTimeout(() => heart.remove(), 8000);
     }
+
     setInterval(createHeart, 350);
 
+    // Confetti on page load
     window.onload = () => {
-      const duration = 3 * 1000;
+      const duration = 3000;
       const end = Date.now() + duration;
       (function frame() {
-        confetti({ particleCount: 3, angle: 60, spread: 55, origin: { x: 0 } });
-        confetti({ particleCount: 3, angle: 120, spread: 55, origin: { x: 1 } });
+        confetti({
+          particleCount: 3,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 }
+        });
+        confetti({
+          particleCount: 3,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 }
+        });
         if (Date.now() < end) requestAnimationFrame(frame);
       })();
 
+      // Initialize scratch card
       new ScratchCard("#scratch-card", {
         scratchType: ScratchCard.SCRATCH_TYPE.CIRCLE,
         containerWidth: 300,
         containerHeight: 300,
-        imageForwardSrc: "https://i.imgur.com/6GfgeBS.png", // scratch layer
-        imageBackgroundSrc: "https://i.imgur.com/yIjMbmK.png", // pig image
+        imageForwardSrc: "https://i.imgur.com/6GfgeBS.png", // Scratch overlay
+        imageBackgroundSrc: "https://i.imgur.com/yIjMbmK.png", // Pig image
         percentToFinish: 50,
         callback: () => alert("You uncovered it! 🐷💖")
       }).init();
     };
 
+    // Countdown timer
     function updateCountdown() {
       const endDate = new Date("December 8, 2025 00:00:00").getTime();
       const now = new Date().getTime();
       const distance = endDate - now;
+
       if (distance <= 0) {
         document.getElementById("time").innerHTML = "It’s our special day! 💑";
         return;
       }
+
       const days = Math.floor(distance / (1000 * 60 * 60 * 24));
       const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
       const mins = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
       const secs = Math.floor((distance % (1000 * 60)) / 1000);
-      document.getElementById("time").innerHTML = `${days}d ${hours}h ${mins}m ${secs}s`;
+
+      document.getElementById("time").innerHTML =
+        `${days}d ${hours}h ${mins}m ${secs}s`;
     }
+
     setInterval(updateCountdown, 1000);
     updateCountdown();
   </script>
 </body>
 </html>
+
