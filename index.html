@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yuvi's Surprise</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #fff0f5;
+      color: #333;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    img {
+      width: 100%;
+      max-width: 400px;
+      border-radius: 20px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+    }
+    h1 {
+      margin-top: 20px;
+      color: #e84393;
+      font-size: 2rem;
+    }
+    p {
+      font-size: 1.2rem;
+      margin: 15px 0;
+    }
+    form {
+      margin-top: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      max-width: 400px;
+      margin-inline: auto;
+    }
+    textarea {
+      padding: 10px;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: 1px solid #ccc;
+    }
+    button {
+      background: #e84393;
+      color: white;
+      border: none;
+      padding: 12px;
+      font-size: 1rem;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #d63071;
+    }
+  </style>
+</head>
+<body>
+  <img src="couple.png" alt="Cute Couple Image" />
+  <h1>💖 For Yuvi 💖</h1>
+  <p>This is just a small surprise to make your day special! 😊</p>
+
+  <form name="submit-to-google-sheet">
+    <textarea name="Message" rows="4" placeholder="Type your reply here..." required></textarea>
+    <button type="submit">Send Your Love 💌</button>
+  </form>
+
+  <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbzZSF4bBQm0pUSFHqMAMmizgs75HGFb0TFTHjhsBs4kVkvP-Oe-poUZXS08qmqYlWcFwA/exec';
+    const form = document.forms['submit-to-google-sheet'];
+
+    form.addEventListener('submit', e => {
+      e.preventDefault();
+      fetch(scriptURL, {
+        method: 'POST',
+        body: new FormData(form)
+      })
+        .then(() => {
+          alert("Message sent to Yuvi 💌");
+          form.reset();
+        })
+        .catch(error => {
+          console.error('Error!', error.message);
+          alert("Something went wrong!");
+        });
+    });
+  </script>
+</body>
+</html>
