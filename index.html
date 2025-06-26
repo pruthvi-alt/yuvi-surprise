@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>For Yuvi ❤️</title>
-  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@latest/dist/confetti.browser.min.js"></script>
   <script src="https://unpkg.com/scratchcard-js"></script>
   <style>
     :root {
@@ -183,6 +183,27 @@
       100% { transform: translateY(-10vh) scale(1); opacity: 0; }
     }
 
+    .reasons-container {
+      margin: 30px auto;
+      max-width: 90%;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 15px;
+      max-height: 300px;
+      overflow-y: auto;
+    }
+
+    .reasons-container ul {
+      padding-left: 20px;
+      text-align: left;
+    }
+
+    .reasons-container li {
+      margin-bottom: 10px;
+      line-height: 1.5;
+      font-size: 1.1em;
+    }
+
     @media screen and (max-width: 600px) {
       h1 { font-size: 2.2em; }
       .typewriter, .secret-message, .secret-btn, .caption { font-size: 1.1em; }
@@ -203,6 +224,11 @@
     You inspire me, calm me, challenge me, and complete me.
     One day, we’ll look back at this distance and smile, because love like ours only grows.
     From nothing to everything, our bond will grow stronger than any insecurity. 🌈
+  </div>
+
+  <button class="secret-btn" onclick="document.getElementById('reasons').style.display='block';">💌 100 Reasons Why I Love You</button>
+  <div id="reasons" class="reasons-container" style="display: none;">
+    <ul id="reasons-list"></ul>
   </div>
 
   <div class="scratch-container">
@@ -256,6 +282,42 @@
       document.getElementById("yuviMessage").value = "";
     }
 
+    const reasons = [
+      "Your smile brightens my day",
+      "You always believe in me",
+      "You make the worst days feel okay",
+      "You listen without judgment",
+      "You care about tiny details",
+      "Your voice feels like home",
+      "You get excited about little things",
+      "You're my best friend",
+      "You laugh at my bad jokes",
+      "You give the warmest hugs",
+      "Your random texts make me smile",
+      "You push me to do better",
+      "You are so thoughtful",
+      "You always forgive me",
+      "You know how to cheer me up",
+      "You make me feel safe",
+      "You support my dreams",
+      "You’re proud of me",
+      "You make life exciting",
+      "You say 'I love you' every day",
+      "You're kind to others",
+      "You're honest with me",
+      "You're always growing",
+      "You're beautifully imperfect",
+      "You're you — and I love you for that",
+      // Add up to 100 reasons here...
+    ];
+
+    const list = document.getElementById("reasons-list");
+    reasons.forEach((r, i) => {
+      const li = document.createElement("li");
+      li.textContent = `${i + 1}. ${r}`;
+      list.appendChild(li);
+    });
+
     function createHeart() {
       const heart = document.createElement("div");
       heart.className = "pulsing-heart";
@@ -263,7 +325,7 @@
       heart.style.left = Math.random() * 100 + "vw";
       heart.style.fontSize = `${16 + Math.random() * 24}px`;
       heart.style.animationDuration = `${4 + Math.random() * 4}s`;
-            document.getElementById("hearts").appendChild(heart);
+      document.getElementById("hearts").appendChild(heart);
       setTimeout(() => heart.remove(), 8000);
     }
 
@@ -326,4 +388,3 @@
   </script>
 </body>
 </html>
-
