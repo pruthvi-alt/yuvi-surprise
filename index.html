@@ -204,6 +204,18 @@
       font-size: 1.1em;
     }
 
+    .hug-animation {
+      display: none;
+      margin: 20px auto;
+      max-width: 90%;
+      animation: fadeIn 1s ease-in;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     @media screen and (max-width: 600px) {
       h1 { font-size: 2.2em; }
       .typewriter, .secret-message, .secret-btn, .caption { font-size: 1.1em; }
@@ -226,9 +238,14 @@
     From nothing to everything, our bond will grow stronger than any insecurity. 🌈
   </div>
 
-  <button class="secret-btn" onclick="document.getElementById('reasons').style.display='block';">💌 25 Reasons Why I Love You</button>
+  <button class="secret-btn" onclick="document.getElementById('reasons').style.display='block';">💌 100 Reasons Why I Love You</button>
   <div id="reasons" class="reasons-container" style="display: none;">
     <ul id="reasons-list"></ul>
+  </div>
+
+  <button class="secret-btn" onclick="showHug()">🤗 Send a Virtual Hug</button>
+  <div class="hug-animation" id="hugAnimation">
+    <img src="https://media.giphy.com/media/3o7aD2sa1g1g0g1g0I/giphy.gif" alt="Hugging Animation" />
   </div>
 
   <div class="scratch-container">
@@ -317,6 +334,14 @@
       li.textContent = `${i + 1}. ${r}`;
       list.appendChild(li);
     });
+
+    function showHug() {
+      const hugAnimation = document.getElementById("hugAnimation");
+      hugAnimation.style.display = "block";
+      setTimeout(() => {
+        hugAnimation.style.display = "none";
+      }, 3000); // Hide after 3 seconds
+    }
 
     function createHeart() {
       const heart = document.createElement("div");
