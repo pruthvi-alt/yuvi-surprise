@@ -405,6 +405,85 @@
       50% { opacity: 1; transform: scale(1); }
     }
 
+    /* Couples Game Styles */
+    .game-container {
+      margin: 30px auto;
+      max-width: 700px;
+      background: rgba(255, 255, 255, 0.95);
+      color: #333;
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      animation: fadeIn 1s ease-in;
+      text-align: center;
+    }
+
+    .game-container h3 {
+      color: var(--main-color);
+      font-size: 1.8em;
+      margin-bottom: 30px;
+    }
+
+    .question-container {
+      margin: 20px 0;
+    }
+
+    .question {
+      font-size: 1.3em;
+      margin-bottom: 30px;
+      color: #333;
+      font-weight: bold;
+      line-height: 1.5;
+    }
+
+    .game-option {
+      display: block;
+      width: 90%;
+      margin: 15px auto;
+      padding: 15px 20px;
+      background: linear-gradient(45deg, #ff4f81, #ff9a9e);
+      color: white;
+      border: none;
+      border-radius: 25px;
+      font-size: 1.1em;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      text-align: center;
+    }
+
+    .game-option:hover {
+      transform: scale(1.05);
+      box-shadow: 0 10px 20px rgba(255, 79, 129, 0.3);
+    }
+
+    .game-score {
+      font-size: 1.2em;
+      margin-top: 20px;
+      color: var(--main-color);
+      font-weight: bold;
+    }
+
+    .game-result {
+      text-align: center;
+      padding: 30px;
+      background: rgba(255, 79, 129, 0.1);
+      border-radius: 15px;
+      margin-top: 20px;
+    }
+
+    .game-result h4 {
+      color: var(--main-color);
+      font-size: 1.5em;
+      margin-bottom: 15px;
+    }
+
+    .game-result p {
+      font-size: 1.1em;
+      line-height: 1.6;
+      color: #555;
+    }
+
     /* Screen reader only content */
     .sr-only {
       position: absolute;
@@ -486,6 +565,24 @@
         🎵 Our Song
       </a>
       <div id="song-help" class="sr-only">Opens our special song in a new tab on YouTube</div>
+
+      <button class="secret-btn" onclick="startCouplesGame()" aria-describedby="game-help">
+        🎮 Play Our Love Game
+      </button>
+      <div id="game-help" class="sr-only">Click to start an interactive couples quiz game</div>
+      <div id="couples-game" class="game-container" style="display: none;" role="complementary">
+        <h3>💕 Our Love Game 💕</h3>
+        <div id="game-content">
+          <div class="question-container">
+            <div class="question" id="current-question"></div>
+            <div class="options" id="game-options"></div>
+            <div class="game-score" id="game-score">Score: ❤️❤️❤️❤️❤️</div>
+          </div>
+        </div>
+        <button class="secret-btn" onclick="closeGame()" style="margin-top: 20px;">
+          ← Back to surprises
+        </button>
+      </div>
 
       <button class="secret-btn" onclick="generateLoveLetter()" aria-describedby="letter-help">
         💌 Generate Today's Love Letter
@@ -1145,6 +1242,232 @@
         }
       }, 300);
     };
+
+    // Couples Game Logic
+    const gameQuestions = [
+      {
+        question: "What's the first thing I noticed about you?",
+        options: ["Your beautiful smile", "Your kind eyes", "Your infectious laugh", "Your graceful walk"],
+        correct: 0,
+        explanation: "Your smile was the first thing that caught my attention — it was so genuine and warm! 😊💖"
+      },
+      {
+        question: "If I could give you anything in the world right now, what would it be?",
+        options: ["A million dollars", "A warm, long hug", "A beautiful house", "Expensive jewelry"],
+        correct: 1,
+        explanation: "Nothing compares to holding you close! All the money in the world couldn't replace that feeling 🤗❤️"
+      },
+      {
+        question: "What's my favorite thing about our relationship?",
+        options: ["How we never fight", "How we can be silly together", "How we support each other's dreams", "How we look good together"],
+        correct: 2,
+        explanation: "I love how we both encourage each other to grow and chase our dreams! We're the perfect team 🌟💕"
+      },
+      {
+        question: "When I'm feeling sad, what do you do that makes me feel better?",
+        options: ["Give me space", "Buy me something nice", "Listen and hold me", "Tell me jokes"],
+        correct: 2,
+        explanation: "Your listening ear and warm embrace are my instant mood boosters! You have such a caring heart 💝"
+      },
+      {
+        question: "What do I love most about your personality?",
+        options: ["Your sense of humor", "Your determination", "Your compassionate heart", "All of the above"],
+        correct: 3,
+        explanation: "How could I pick just one? You're funny, strong, kind, and so much more! You're absolutely perfect 🥰"
+      },
+      {
+        question: "If we were planning our dream date, what would I choose?",
+        options: ["Fancy restaurant dinner", "Stargazing with homemade snacks", "Shopping spree", "Theme park adventure"],
+        correct: 1,
+        explanation: "Simple moments under the stars with you are my idea of perfect! Just us, the universe, and love 🌙⭐"
+      },
+      {
+        question: "What's the sweetest thing you've ever done for me?",
+        options: ["Remembered my favorite things", "Supported me during tough times", "Surprised me with little gestures", "All of these and more"],
+        correct: 3,
+        explanation: "You constantly amaze me with your thoughtfulness! Every little thing you do shows how much you care 💖"
+      },
+      {
+        question: "How do I feel when I see your name pop up on my phone?",
+        options: ["Happy", "Excited", "Like my heart skips a beat", "All of the above times a million"],
+        correct: 3,
+        explanation: "Seeing your name literally makes my whole day brighter! You're my favorite notification 📱💕"
+      },
+      {
+        question: "What's my biggest dream for our future?",
+        options: ["To travel the world", "To build a life filled with love and laughter", "To become rich and famous", "To have the biggest wedding"],
+        correct: 1,
+        explanation: "I dream of a simple, beautiful life with you — full of love, giggles, and growing old together 👫💕"
+      },
+      {
+        question: "What would I say is the most important thing in a relationship?",
+        options: ["Physical attraction", "Trust and communication", "Having similar interests", "Financial stability"],
+        correct: 1,
+        explanation: "Trust and communication are the foundation of everything! With those, we can overcome anything together 💪❤️"
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+    let gameScore = 0;
+    let totalQuestions = 0;
+
+    function startCouplesGame() {
+      const gameContainer = document.getElementById('couples-game');
+      gameContainer.style.display = 'block';
+      gameContainer.scrollIntoView({ behavior: 'smooth' });
+      
+      // Reset game state
+      currentQuestionIndex = 0;
+      gameScore = 0;
+      totalQuestions = gameQuestions.length;
+      
+      // Start with first question
+      displayQuestion();
+      updateScore();
+      
+      // Add romantic effects
+      triggerRomanticEffects();
+    }
+
+    function displayQuestion() {
+      if (currentQuestionIndex >= gameQuestions.length) {
+        showGameResults();
+        return;
+      }
+      
+      const question = gameQuestions[currentQuestionIndex];
+      const questionElement = document.getElementById('current-question');
+      const optionsElement = document.getElementById('game-options');
+      
+      questionElement.textContent = `Question ${currentQuestionIndex + 1}: ${question.question}`;
+      
+      // Clear previous options
+      optionsElement.innerHTML = '';
+      
+      // Create option buttons
+      question.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.className = 'game-option';
+        button.textContent = option;
+        button.onclick = () => selectAnswer(index);
+        optionsElement.appendChild(button);
+      });
+    }
+
+    function selectAnswer(selectedIndex) {
+      const question = gameQuestions[currentQuestionIndex];
+      const isCorrect = selectedIndex === question.correct;
+      
+      if (isCorrect) {
+        gameScore++;
+        // Show celebration
+        setTimeout(() => {
+          confetti({
+            particleCount: 50,
+            spread: 60,
+            origin: { y: 0.7 },
+            colors: ['#ff4f81', '#ff9a9e']
+          });
+        }, 100);
+      }
+      
+      // Show explanation
+      showAnswerExplanation(question.explanation, isCorrect);
+    }
+
+    function showAnswerExplanation(explanation, isCorrect) {
+      const optionsElement = document.getElementById('game-options');
+      
+      // Clear options and show explanation
+      optionsElement.innerHTML = `
+        <div style="
+          background: ${isCorrect ? 'rgba(76, 175, 80, 0.2)' : 'rgba(255, 193, 7, 0.2)'};
+          padding: 20px;
+          border-radius: 15px;
+          margin: 20px 0;
+          color: #333;
+        ">
+          <h4 style="color: var(--main-color); margin-bottom: 10px;">
+            ${isCorrect ? '💖 Correct! You know me so well!' : '💕 Close, but here\'s the truth:'}
+          </h4>
+          <p style="line-height: 1.6; font-size: 1.1em;">${explanation}</p>
+          <button class="game-option" onclick="nextQuestion()" style="margin-top: 15px; width: 200px;">
+            ${currentQuestionIndex < gameQuestions.length - 1 ? 'Next Question →' : 'See Results →'}
+          </button>
+        </div>
+      `;
+      
+      updateScore();
+    }
+
+    function nextQuestion() {
+      currentQuestionIndex++;
+      displayQuestion();
+    }
+
+    function updateScore() {
+      const scoreElement = document.getElementById('game-score');
+      const hearts = '❤️'.repeat(gameScore) + '🤍'.repeat(Math.max(0, totalQuestions - gameScore));
+      scoreElement.innerHTML = `Score: ${hearts} (${gameScore}/${currentQuestionIndex})`;
+    }
+
+    function showGameResults() {
+      const percentage = Math.round((gameScore / totalQuestions) * 100);
+      let resultMessage, resultTitle;
+      
+      if (percentage >= 90) {
+        resultTitle = "💖 SOULMATE LEVEL! 💖";
+        resultMessage = "WOW! You know me better than I know myself! We're definitely meant to be together forever. Your love and attention to detail amazes me every single day. I'm the luckiest person alive to have you! 🥰";
+      } else if (percentage >= 70) {
+        resultTitle = "💕 True Love! 💕";
+        resultMessage = "You did amazing! You understand my heart so well. Every day with you teaches me more about what real love feels like. Thank you for caring enough to know me this deeply! 😍";
+      } else if (percentage >= 50) {
+        resultTitle = "💝 Growing Together! 💝";
+        resultMessage = "We're still learning about each other, and that's beautiful! Every conversation, every moment together helps us understand each other better. I love growing with you! 🌱💕";
+      } else {
+        resultTitle = "💞 New Adventures! 💞";
+        resultMessage = "This just means we have so many wonderful discoveries ahead of us! I can't wait to share more of my heart with you and learn everything about yours. Our journey is just beginning! 🌟";
+      }
+      
+      const gameContent = document.getElementById('game-content');
+      gameContent.innerHTML = `
+        <div class="game-result">
+          <h4>${resultTitle}</h4>
+          <p style="font-size: 1.3em; margin-bottom: 15px;">You scored ${gameScore} out of ${totalQuestions} (${percentage}%)</p>
+          <p>${resultMessage}</p>
+          <button class="game-option" onclick="restartGame()" style="margin-top: 20px; width: 250px;">
+            🔄 Play Again
+          </button>
+        </div>
+      `;
+      
+      // Celebration effects
+      setTimeout(() => {
+        confetti({
+          particleCount: 100,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#ff4f81', '#ff9a9e', '#fbc2eb', '#a18cd1']
+        });
+        triggerRomanticEffects();
+      }, 500);
+    }
+
+    function restartGame() {
+      currentQuestionIndex = 0;
+      gameScore = 0;
+      displayQuestion();
+      updateScore();
+    }
+
+    function closeGame() {
+      const gameContainer = document.getElementById('couples-game');
+      gameContainer.style.display = 'none';
+      
+      // Reset game for next time
+      currentQuestionIndex = 0;
+      gameScore = 0;
+    }
   </script>
 </body>
 </html>
