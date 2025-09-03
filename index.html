@@ -217,6 +217,19 @@
       font-size: 1.1em;
     }
 
+    /* Screen reader only content */
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
     @media screen and (max-width: 600px) {
       h1 { font-size: 2.2em; }
       .typewriter, .secret-message, .secret-btn, .caption { font-size: 1.1em; }
@@ -225,45 +238,89 @@
   </style>
 </head>
 <body>
-  <h1>Hi Yuvi ❤️</h1>
-  <div id="countdown" class="countdown">Just <span id="time"></span> until we hug again 🤗</div>
-  <div class="typewriter" id="message"></div>
-  <img src="couple.png" alt="Couple under moon" class="moon-scene" />
-  <div class="caption">Someday, this will be real... 🌙</div>
+  <header>
+    <h1>Hi Yuvi ❤️</h1>
+    <div id="countdown" class="countdown" role="timer" aria-live="polite">
+      Just <span id="time">calculating...</span> until we hug again 🤗
+    </div>
+  </header>
+  
+  <main>
+    <section aria-label="Personal message">
+      <div class="typewriter" id="message" aria-live="polite"></div>
+    </section>
+    
+    <section aria-label="Romantic scene">
+      <img src="couple.png" alt="Silhouette of a romantic couple standing together under a crescent moon with stars in the background" class="moon-scene" />
+      <div class="caption">Someday, this will be real... 🌙</div>
+    </section>
 
-  <button class="secret-btn" onclick="reveal()">💖 Tap to unlock a secret 💖</button>
-  <div class="secret-message" id="secret">
-    I don’t just love you for who you are — I love you for who I become when I’m with you.
-    You inspire me, calm me, challenge me, and complete me.
-    One day, we’ll look back at this distance and smile, because love like ours only grows.
-    From nothing to everything, our bond will grow stronger than any insecurity. 🌈
-  </div>
+    <section aria-label="Interactive surprises">
+      <button class="secret-btn" onclick="reveal()" aria-describedby="secret-help">
+        💖 Tap to unlock a secret 💖
+      </button>
+      <div id="secret-help" class="sr-only">Click to reveal a special romantic message</div>
+      <div class="secret-message" id="secret" role="complementary" aria-live="polite">
+        I don't just love you for who you are — I love you for who I become when I'm with you.
+        You inspire me, calm me, challenge me, and complete me.
+        One day, we'll look back at this distance and smile, because love like ours only grows.
+        From nothing to everything, our bond will grow stronger than any insecurity. 🌈
+      </div>
 
-  <button class="secret-btn" onclick="showHug()">🤗 Send a Virtual Hug</button>
-  <div class="hug-animation" id="hugAnimation">
-    <img src="https://media.giphy.com/media/3o7aD2sa1g1g0g1g0I/giphy.gif" alt="Hugging Animation" />
-  </div>
+      <button class="secret-btn" onclick="showHug()" aria-describedby="hug-help">
+        🤗 Send a Virtual Hug
+      </button>
+      <div id="hug-help" class="sr-only">Click to send and display a virtual hug animation</div>
+      <div class="hug-animation" id="hugAnimation" role="complementary">
+        <img src="https://media.giphy.com/media/3o7aD2sa1g1g0g1g0I/giphy.gif" alt="Animated GIF showing two people hugging warmly" />
+      </div>
 
-  <button class="secret-btn" onclick="document.getElementById('reasons').style.display='block';">💌 100 Reasons Why I Love You</button>
-  <div id="reasons" class="reasons-container" style="display: none;">
-    <ul id="reasons-list"></ul>
-  </div>
+      <button class="secret-btn" onclick="showReasons()" aria-describedby="reasons-help">
+        💌 100 Reasons Why I Love You
+      </button>
+      <div id="reasons-help" class="sr-only">Click to see a list of 100 romantic reasons</div>
+      <div id="reasons" class="reasons-container" style="display: none;" role="complementary" aria-label="100 reasons why I love you">
+        <h2 class="sr-only">100 Reasons Why I Love You</h2>
+        <ul id="reasons-list"></ul>
+      </div>
 
-  <div class="scratch-container">
-    <div id="scratch-card"></div>
-    <p style="color:white; font-size:1.2em;">You found the piggy! 🐷💖</p>
-  </div>
+      <div class="scratch-container" role="application" aria-label="Scratch card game">
+        <div id="scratch-card" aria-describedby="scratch-help"></div>
+        <div id="scratch-help" class="sr-only">Use your mouse or finger to scratch and reveal a hidden surprise</div>
+        <p style="color:white; font-size:1.2em;">You found the piggy! 🐷💖</p>
+      </div>
 
-  <a href="https://youtu.be/7GRz-zt8RuE?si=Z-r3OGYWk1dyBX9o" target="_blank" class="secret-btn">🎵 Our Song</a>
+      <a href="https://youtu.be/7GRz-zt8RuE?si=Z-r3OGYWk1dyBX9o" 
+         target="_blank" 
+         class="secret-btn" 
+         aria-describedby="song-help"
+         rel="noopener noreferrer">
+        🎵 Our Song
+      </a>
+      <div id="song-help" class="sr-only">Opens our special song in a new tab on YouTube</div>
 
-  <button class="secret-btn" onclick="showReply()">✍️ Write me back</button>
-  <div id="reply-box" style="display: none; margin: 40px auto; max-width: 90%;">
-    <textarea id="yuviMessage" rows="5" placeholder="Your words mean the world to me..."></textarea><br>
-    <button onclick="sendMessage()">📩 Send to your baby</button>
-  </div>
+      <button class="secret-btn" onclick="showReply()" aria-describedby="reply-help">
+        ✍️ Write me back
+      </button>
+      <div id="reply-help" class="sr-only">Click to open a message box to write back</div>
+      <div id="reply-box" style="display: none; margin: 40px auto; max-width: 90%;" role="complementary">
+        <label for="yuviMessage" class="sr-only">Your message to your love</label>
+        <textarea id="yuviMessage" 
+                  rows="5" 
+                  placeholder="Your words mean the world to me..." 
+                  aria-describedby="message-help"></textarea>
+        <div id="message-help" class="sr-only">Write a romantic message to send</div>
+        <br>
+        <button onclick="sendMessage()" aria-describedby="send-help">
+          📩 Send to your baby
+        </button>
+        <div id="send-help" class="sr-only">Click to send your message</div>
+      </div>
+    </section>
+  </main>
 
-  <div class="footer">– Made with ❤️ by your Gadheda</div>
-  <div class="hearts" id="hearts"></div>
+  <footer class="footer">– Made with ❤️ by your Gadheda</footer>
+  <div class="hearts" id="hearts" aria-hidden="true"></div>
 
   <script>
     const msg = "Hey mrs yuvika, this is to remind you how much I love you. No matter what, I just want you to feel me near. Yesterday was tough but we fought well. We'll keep fighting for our love ❤️";
@@ -294,6 +351,12 @@
       const box = document.getElementById("reply-box");
       box.style.display = "block";
       box.scrollIntoView({ behavior: "smooth" });
+    }
+
+    function showReasons() {
+      const reasonsContainer = document.getElementById("reasons");
+      reasonsContainer.style.display = "block";
+      reasonsContainer.scrollIntoView({ behavior: "smooth" });
     }
 
     function sendMessage() {
@@ -327,7 +390,7 @@
       "You know how to cheer me up",
       "You make me feel safe",
       "You support my dreams",
-      "You’re proud of me",
+      "You're proud of me",
       "You make life exciting",
       "You say 'I love you' every day",
       "You're kind to others",
@@ -335,7 +398,86 @@
       "You're always growing",
       "You're beautifully imperfect",
       "You're you — and I love you for that",
-      // Add up to 100 reasons here...
+      "Your laugh is contagious",
+      "You remember the little things",
+      "You make me want to be better",
+      "Your hugs fix everything",
+      "You dance like nobody's watching",
+      "You find joy in simple moments",
+      "Your eyes tell beautiful stories",
+      "You're incredibly talented",
+      "You love unconditionally",
+      "You're my favorite person",
+      "Your heart is pure gold",
+      "You make ordinary days special",
+      "You're endlessly creative",
+      "Your optimism is infectious",
+      "You understand me completely",
+      "You're my greatest adventure",
+      "Your strength inspires me",
+      "You make me feel beautiful",
+      "Your wisdom guides me",
+      "You're my safe harbor",
+      "Your dreams fascinate me",
+      "You make me laugh until I cry",
+      "Your love heals my soul",
+      "You're my missing puzzle piece",
+      "Your presence calms me",
+      "You see the best in everyone",
+      "Your courage amazes me",
+      "You make home wherever you are",
+      "Your passion is beautiful",
+      "You're my biggest cheerleader",
+      "Your gentleness touches my heart",
+      "You make me feel complete",
+      "Your love is my sanctuary",
+      "You bring out my silly side",
+      "Your intelligence captivates me",
+      "You're my favorite hello",
+      "Your kindness knows no bounds",
+      "You make me believe in magic",
+      "Your love gives me wings",
+      "You're my greatest blessing",
+      "Your heart is my favorite place",
+      "You make every day brighter",
+      "Your love is my superpower",
+      "You're my forever person",
+      "Your smile is my sunshine",
+      "You make love look easy",
+      "Your trust means everything",
+      "You're my sweetest dream",
+      "Your love is my anchor",
+      "You make me feel invincible",
+      "Your laughter is music to me",
+      "You're my greatest gift",
+      "Your love writes our story",
+      "You make time stand still",
+      "Your heart beats with mine",
+      "You're my definition of perfect",
+      "Your love is my North Star",
+      "You make ordinary extraordinary",
+      "Your soul speaks to mine",
+      "You're my favorite memory",
+      "Your love is my religion",
+      "You make me believe in forever",
+      "Your touch ignites my soul",
+      "You're my greatest adventure",
+      "Your love is my masterpiece",
+      "You make my heart skip beats",
+      "Your dreams become mine",
+      "You're my favorite story",
+      "Your love is my poetry",
+      "You make stars jealous",
+      "Your heart is my treasure",
+      "You're my sweetest addiction",
+      "Your love is my paradise",
+      "You make me feel infinite",
+      "Your soul is beautiful",
+      "You're my favorite miracle",
+      "Your love is my canvas",
+      "You make everything possible",
+      "Your heart holds my secrets",
+      "You're my eternal spring"
     ];
 
     const list = document.getElementById("reasons-list");
