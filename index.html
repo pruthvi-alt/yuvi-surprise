@@ -566,6 +566,63 @@
       </a>
       <div id="song-help" class="sr-only">Opens our special song in a new tab on YouTube</div>
 
+      <button class="secret-btn" onclick="showDailyAffirmation()" aria-describedby="affirmation-help">
+        ✨ Today's Love Affirmation
+      </button>
+      <div id="affirmation-help" class="sr-only">Click to see a special daily affirmation just for you</div>
+      <div id="daily-affirmation" class="love-letter-container" style="display: none;" role="complementary">
+        <div class="love-letter-content">
+          <div class="letter-greeting" style="text-align: center; font-size: 1.8em; margin-bottom: 30px;">💫 For My Beautiful Yuvi 💫</div>
+          <div class="affirmation-content" id="affirmation-text" style="font-size: 1.3em; line-height: 2; text-align: center; color: var(--main-color); font-weight: bold;"></div>
+          <div class="affirmation-quote" id="affirmation-quote" style="font-style: italic; text-align: center; margin-top: 30px; color: #666; font-size: 1.1em;"></div>
+        </div>
+        <button class="secret-btn" onclick="refreshAffirmation()" style="margin: 10px 20px;">
+          🔄 New Affirmation
+        </button>
+        <button class="secret-btn" onclick="closeDailyAffirmation()" style="margin: 10px 20px;">
+          💖 Thank You, Baby
+        </button>
+      </div>
+
+      <button class="secret-btn" onclick="openFlowerGarden()" aria-describedby="garden-help">
+        🌺 Our Love Garden
+      </button>
+      <div id="garden-help" class="sr-only">Click to open an interactive flower garden representing our growing love</div>
+      <div id="flower-garden" class="game-container" style="display: none;" role="complementary">
+        <h3>🌸 Our Love Garden 🌸</h3>
+        <p style="color: #666; margin-bottom: 30px; font-size: 1.1em;">Click on the seeds to make flowers bloom! Each flower represents a moment of our love growing stronger. 💕</p>
+        <div class="garden-area" id="garden-area" style="min-height: 300px; background: linear-gradient(to bottom, #87CEEB 0%, #98FB98 100%); border-radius: 20px; padding: 30px; position: relative; margin: 20px 0; cursor: pointer;">
+          <div class="garden-message" style="text-align: center; color: #4a4a4a; font-style: italic; margin-top: 100px;">Click anywhere to plant seeds of love! 🌱</div>
+        </div>
+        <div style="text-align: center; margin: 20px 0;">
+          <span id="flower-count" style="font-size: 1.2em; color: var(--main-color); font-weight: bold;">Flowers Bloomed: 0 🌸</span>
+        </div>
+        <button class="secret-btn" onclick="closeFlowerGarden()" style="margin-top: 20px;">
+          ← Back to surprises
+        </button>
+      </div>
+
+      <button class="secret-btn" onclick="showRomanticQuotes()" aria-describedby="quotes-help">
+        💕 Love Quotes Carousel
+      </button>
+      <div id="quotes-help" class="sr-only">Click to see beautiful rotating love quotes</div>
+      <div id="romantic-quotes" class="love-letter-container" style="display: none;" role="complementary">
+        <div class="quote-carousel">
+          <div class="letter-greeting" style="text-align: center; font-size: 1.6em; margin-bottom: 20px;">💝 Words of Love 💝</div>
+          <div class="quote-display" style="height: 200px; display: flex; align-items: center; justify-content: center;">
+            <div class="current-quote" id="current-quote" style="font-size: 1.2em; line-height: 1.8; text-align: center; color: var(--main-color); font-weight: 500; padding: 0 20px;"></div>
+          </div>
+          <div class="quote-controls" style="text-align: center; margin-top: 20px;">
+            <button onclick="previousQuote()" style="background: none; border: 2px solid var(--main-color); color: var(--main-color); border-radius: 50%; width: 50px; height: 50px; margin: 0 15px; cursor: pointer; font-size: 18px;">←</button>
+            <span id="quote-indicator" style="color: #666; font-size: 1em;">1 / 20</span>
+            <button onclick="nextQuote()" style="background: none; border: 2px solid var(--main-color); color: var(--main-color); border-radius: 50%; width: 50px; height: 50px; margin: 0 15px; cursor: pointer; font-size: 18px;">→</button>
+          </div>
+        </div>
+        <button class="secret-btn" onclick="closeRomanticQuotes()" style="margin-top: 30px;">
+          💖 Close Quotes
+        </button>
+      </div>
+
       <button class="secret-btn" onclick="startCouplesGame()" aria-describedby="game-help">
         🎮 Play Our Love Game
       </button>
@@ -580,6 +637,40 @@
           </div>
         </div>
         <button class="secret-btn" onclick="closeGame()" style="margin-top: 20px;">
+          ← Back to surprises
+        </button>
+      </div>
+
+      <button class="secret-btn" onclick="showMoodBooster()" aria-describedby="mood-help">
+        🌈 Need Some Love? Mood Booster
+      </button>
+      <div id="mood-help" class="sr-only">Click to get a personalized mood-boosting message</div>
+      <div id="mood-booster" class="love-letter-container" style="display: none;" role="complementary">
+        <div class="love-letter-content">
+          <div class="letter-greeting" style="text-align: center; font-size: 1.8em; margin-bottom: 30px;" id="mood-title">💝 Just For You 💝</div>
+          <div class="mood-content" id="mood-text" style="font-size: 1.3em; line-height: 1.8; text-align: center; color: var(--main-color); font-weight: 500;"></div>
+          <div class="mood-action" id="mood-action" style="text-align: center; margin-top: 30px; color: #666; font-size: 1.1em; font-style: italic;"></div>
+        </div>
+        <button class="secret-btn" onclick="getNewMoodMessage()" style="margin: 10px 20px;">
+          ✨ Another Boost
+        </button>
+        <button class="secret-btn" onclick="closeMoodBooster()" style="margin: 10px 20px;">
+          💖 Thank You, I Feel Better
+        </button>
+      </div>
+
+      <button class="secret-btn" onclick="showMemoryLane()" aria-describedby="memory-help">
+        📸 Our Memory Lane
+      </button>
+      <div id="memory-help" class="sr-only">Click to walk through beautiful memories and milestones</div>
+      <div id="memory-lane" class="game-container" style="display: none;" role="complementary">
+        <h3>💕 Our Beautiful Journey 💕</h3>
+        <p style="color: #666; margin-bottom: 30px; font-size: 1.1em;">Every step of our journey has been magical. Let's celebrate our special moments! ✨</p>
+        <div class="memory-timeline" id="memory-timeline" style="max-height: 400px; overflow-y: auto;"></div>
+        <button class="secret-btn" onclick="addNewMemory()" style="margin: 20px 10px;">
+          ➕ Add New Memory
+        </button>
+        <button class="secret-btn" onclick="closeMemoryLane()" style="margin: 20px 10px;">
           ← Back to surprises
         </button>
       </div>
@@ -1468,6 +1559,554 @@
       currentQuestionIndex = 0;
       gameScore = 0;
     }
+
+    // Daily Affirmations Feature
+    const dailyAffirmations = [
+      {
+        text: "You are absolutely stunning, inside and out. Your beauty radiates from your soul and lights up everything around you.",
+        quote: "\"A beautiful soul shines brighter than any diamond.\" 💎"
+      },
+      {
+        text: "Your kindness touches everyone you meet. You make the world a better place just by being in it, my love.",
+        quote: "\"Kindness is the language which the deaf can hear and the blind can see.\" 🌟"
+      },
+      {
+        text: "You are stronger than you know, braver than you feel, and more loved than you could ever imagine.",
+        quote: "\"She believed she could, so she did.\" 💪✨"
+      },
+      {
+        text: "Your smile has the power to brighten the darkest days. You are my sunshine, my ray of hope.",
+        quote: "\"Let your smile change the world, don't let the world change your smile.\" 😊"
+      },
+      {
+        text: "You inspire me every single day to be a better person. Your love makes me want to reach for the stars.",
+        quote: "\"Love is not just about finding the right person, but creating the right relationship.\" 💫"
+      },
+      {
+        text: "Your intelligence and wisdom amaze me. You see the world with such clarity and grace.",
+        quote: "\"Intelligence is the ability to adapt to change.\" 🧠💖"
+      },
+      {
+        text: "You have a heart of gold that loves without limits. Your capacity for love is infinite and beautiful.",
+        quote: "\"Where there is love, there is life.\" - Mahatma Gandhi 💛"
+      },
+      {
+        text: "You are perfectly imperfect, and that's what makes you absolutely perfect for me.",
+        quote: "\"Imperfection is beauty, madness is genius.\" - Marilyn Monroe 💝"
+      },
+      {
+        text: "Your dreams are valid and achievable. I believe in you and all the amazing things you're destined to do.",
+        quote: "\"The future belongs to those who believe in the beauty of their dreams.\" 🌈"
+      },
+      {
+        text: "You deserve all the love, happiness, and beautiful things this world has to offer. Never settle for less.",
+        quote: "\"You yourself, as much as anybody, deserve your love and affection.\" - Buddha 🌺"
+      }
+    ];
+
+    function showDailyAffirmation() {
+      const affirmationContainer = document.getElementById('daily-affirmation');
+      const today = new Date();
+      const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+      const affirmationIndex = dayOfYear % dailyAffirmations.length;
+      const todaysAffirmation = dailyAffirmations[affirmationIndex];
+      
+      document.getElementById('affirmation-text').textContent = todaysAffirmation.text;
+      document.getElementById('affirmation-quote').textContent = todaysAffirmation.quote;
+      
+      affirmationContainer.style.display = 'block';
+      affirmationContainer.scrollIntoView({ behavior: 'smooth' });
+      
+      // Add magical effects
+      setTimeout(() => {
+        confetti({
+          particleCount: 50,
+          spread: 60,
+          origin: { y: 0.6 },
+          colors: ['#ff4f81', '#fbc2eb', '#a18cd1']
+        });
+        triggerRomanticEffects();
+      }, 500);
+    }
+
+    function refreshAffirmation() {
+      const randomIndex = Math.floor(Math.random() * dailyAffirmations.length);
+      const affirmation = dailyAffirmations[randomIndex];
+      
+      document.getElementById('affirmation-text').textContent = affirmation.text;
+      document.getElementById('affirmation-quote').textContent = affirmation.quote;
+      
+      // Add sparkle effect
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => createSparkle(), i * 200);
+      }
+    }
+
+    function closeDailyAffirmation() {
+      document.getElementById('daily-affirmation').style.display = 'none';
+    }
+
+    // Flower Garden Feature
+    let flowerCount = 0;
+    const flowerEmojis = ['🌸', '🌺', '🌼', '🌻', '🌷', '🌹', '💐', '🌿', '🌱'];
+
+    function openFlowerGarden() {
+      const gardenContainer = document.getElementById('flower-garden');
+      const gardenArea = document.getElementById('garden-area');
+      
+      gardenContainer.style.display = 'block';
+      gardenContainer.scrollIntoView({ behavior: 'smooth' });
+      
+      // Add click event to garden area
+      gardenArea.onclick = function(event) {
+        plantFlower(event.clientX - gardenArea.offsetLeft, event.clientY - gardenArea.offsetTop);
+      };
+      
+      // Add romantic garden effects
+      setTimeout(() => {
+        for (let i = 0; i < 5; i++) {
+          setTimeout(() => createPetal(), i * 300);
+        }
+      }, 500);
+    }
+
+    function plantFlower(x, y) {
+      const gardenArea = document.getElementById('garden-area');
+      const flower = document.createElement('div');
+      
+      // Hide initial message when first flower is planted
+      const gardenMessage = document.querySelector('.garden-message');
+      if (gardenMessage) {
+        gardenMessage.style.display = 'none';
+      }
+      
+      flower.textContent = flowerEmojis[Math.floor(Math.random() * flowerEmojis.length)];
+      flower.style.position = 'absolute';
+      flower.style.left = Math.max(20, Math.min(x - 15, gardenArea.offsetWidth - 50)) + 'px';
+      flower.style.top = Math.max(20, Math.min(y - 15, gardenArea.offsetHeight - 50)) + 'px';
+      flower.style.fontSize = (Math.random() * 15 + 20) + 'px';
+      flower.style.cursor = 'pointer';
+      flower.style.transition = 'transform 0.3s ease';
+      flower.style.transform = 'scale(0)';
+      
+      gardenArea.appendChild(flower);
+      
+      // Bloom animation
+      setTimeout(() => {
+        flower.style.transform = 'scale(1)';
+      }, 50);
+      
+      // Add hover effect
+      flower.onmouseenter = () => flower.style.transform = 'scale(1.3)';
+      flower.onmouseleave = () => flower.style.transform = 'scale(1)';
+      
+      // Add click effect for extra love
+      flower.onclick = (e) => {
+        e.stopPropagation();
+        flower.style.transform = 'scale(1.5)';
+        setTimeout(() => flower.style.transform = 'scale(1)', 200);
+        
+        // Create heart particles
+        for (let i = 0; i < 3; i++) {
+          const heart = document.createElement('div');
+          heart.textContent = '💖';
+          heart.style.position = 'absolute';
+          heart.style.left = flower.style.left;
+          heart.style.top = flower.style.top;
+          heart.style.fontSize = '16px';
+          heart.style.pointerEvents = 'none';
+          heart.style.animation = 'pulseFloat 2s ease-out forwards';
+          gardenArea.appendChild(heart);
+          
+          setTimeout(() => heart.remove(), 2000);
+        }
+      };
+      
+      flowerCount++;
+      document.getElementById('flower-count').textContent = `Flowers Bloomed: ${flowerCount} 🌸`;
+      
+      // Special messages at milestones
+      if (flowerCount === 10) {
+        setTimeout(() => alert('🌻 Our garden is blooming beautifully! Just like our love! 💕'), 300);
+      } else if (flowerCount === 25) {
+        setTimeout(() => alert('🌺 Look how much love we\'ve planted together! You\'re amazing! 🥰'), 300);
+      }
+    }
+
+    function closeFlowerGarden() {
+      document.getElementById('flower-garden').style.display = 'none';
+    }
+
+    // Romantic Quotes Carousel
+    const romanticQuotes = [
+      "Every moment with you feels like a beautiful dream I never want to wake up from.",
+      "You are my today and all of my tomorrows. My heart beats for you alone.",
+      "In a sea of people, my eyes will always search for you first.",
+      "You are the poem I never knew how to write and this life is the story I never knew how to tell.",
+      "When I tell you I love you, I am not saying it out of habit. I am reminding you that you are my life.",
+      "You are my sun, my moon, and all my stars. You light up my entire universe.",
+      "I fell in love with you because of a million tiny things you never knew you were doing.",
+      "You are the missing piece I never knew my puzzle was missing.",
+      "Every love story is beautiful, but ours is my absolute favorite.",
+      "I choose you. And I'll choose you over and over, without pause, without doubt, in a heartbeat.",
+      "You are my heart, my life, my one and only thought. I love you more than words can express.",
+      "With you, I am home. Wherever you are, that's where I belong.",
+      "You are the reason I wake up with a smile and fall asleep with a heart full of gratitude.",
+      "I love you not only for what you are, but for what I am when I am with you.",
+      "You are my greatest adventure, my sweetest escape, my most beautiful reality.",
+      "In your arms, I have found my forever. In your eyes, I have found my home.",
+      "You are the music my heart dances to, the melody that plays in my soul.",
+      "I never believed in fairy tales until I met you. Now I know they do come true.",
+      "You are my always, my forever, my everything. My love for you knows no boundaries.",
+      "Being with you feels like coming home to a place I never knew I was searching for."
+    ];
+
+    let currentQuoteIndex = 0;
+
+    function showRomanticQuotes() {
+      const quotesContainer = document.getElementById('romantic-quotes');
+      quotesContainer.style.display = 'block';
+      quotesContainer.scrollIntoView({ behavior: 'smooth' });
+      
+      displayCurrentQuote();
+      
+      // Add romantic effects
+      setTimeout(() => {
+        for (let i = 0; i < 4; i++) {
+          setTimeout(() => createSparkle(), i * 250);
+        }
+      }, 300);
+    }
+
+    function displayCurrentQuote() {
+      document.getElementById('current-quote').textContent = romanticQuotes[currentQuoteIndex];
+      document.getElementById('quote-indicator').textContent = `${currentQuoteIndex + 1} / ${romanticQuotes.length}`;
+    }
+
+    function nextQuote() {
+      currentQuoteIndex = (currentQuoteIndex + 1) % romanticQuotes.length;
+      displayCurrentQuote();
+      
+      // Add gentle sparkle effect
+      createSparkle();
+    }
+
+    function previousQuote() {
+      currentQuoteIndex = currentQuoteIndex === 0 ? romanticQuotes.length - 1 : currentQuoteIndex - 1;
+      displayCurrentQuote();
+      
+      // Add gentle sparkle effect
+      createSparkle();
+    }
+
+    function closeRomanticQuotes() {
+      document.getElementById('romantic-quotes').style.display = 'none';
+    }
+
+    // Auto-advance quotes every 8 seconds when carousel is open
+    setInterval(() => {
+      const quotesContainer = document.getElementById('romantic-quotes');
+      if (quotesContainer.style.display === 'block') {
+        nextQuote();
+      }
+    }, 8000);
+
+    // Mood Booster Feature - Time & emotion sensitive messages
+    const moodBoosterMessages = {
+      morning: {
+        title: "🌅 Good Morning, Beautiful",
+        messages: [
+          "Good morning, gorgeous! The sun is shining brighter today because you're in the world. May your day be filled with as much joy as you bring to my life.",
+          "Rise and shine, my love! Every morning I wake up grateful that you exist. You are my daily dose of sunshine and happiness.",
+          "Morning, beautiful! Coffee might wake me up, but thoughts of you make my heart come alive. Have the most amazing day, my love."
+        ],
+        actions: ["Take a deep breath and smile - you're amazing!", "Remember: you're loved beyond measure 💕", "Today is going to be wonderful because you're in it!"]
+      },
+      afternoon: {
+        title: "☀️ Afternoon Pick-Me-Up",
+        messages: [
+          "Hey beautiful! Just wanted to remind you how incredibly amazing you are. If you're having a tough day, remember that I believe in you completely.",
+          "Afternoon check-in: You're doing great! Even if things feel overwhelming, you're stronger than you know and more loved than you realize.",
+          "Sweet afternoon reminder: You light up every room you enter. Your presence makes the world a better, brighter place."
+        ],
+        actions: ["Treat yourself to something sweet today!", "Take a moment to appreciate how far you've come 🌟", "You deserve all the good things coming your way!"]
+      },
+      evening: {
+        title: "🌙 Evening Love Note",
+        messages: [
+          "Good evening, my love. As the day winds down, I want you to know how proud I am of everything you've accomplished today. You're incredible.",
+          "Evening thoughts: You handled today beautifully. Even if it wasn't perfect, you showed up and that's what matters. I'm so proud of you.",
+          "Sweet evening reminder: You are loved, you are valued, and you are enough. Always. Sleep well knowing you're my everything."
+        ],
+        actions: ["Time to relax - you've earned it! 🛁", "Reflect on three things that went well today ✨", "Tomorrow is another chance to shine!"]
+      },
+      stressed: {
+        title: "💆‍♀️ Stress Relief & Love",
+        messages: [
+          "I can sense you might be feeling overwhelmed right now. Take a deep breath with me. You are capable, you are strong, and this too shall pass. I believe in you.",
+          "When life feels heavy, remember: you don't have to carry it all alone. You're braver than you believe and stronger than you seem. I'm here for you.",
+          "Tough times don't last, but tough people like you do. You've overcome challenges before, and you'll get through this too. I love you endlessly."
+        ],
+        actions: ["Try the 4-7-8 breathing technique 🧘‍♀️", "List three things you're grateful for right now 💝", "Remember: this feeling is temporary, you are eternal"]
+      },
+      random: {
+        title: "💖 Just Because I Love You",
+        messages: [
+          "Random love reminder: You are the most beautiful person, inside and out. Your soul shines brighter than any star in the sky.",
+          "Just because message: You make ordinary moments feel magical. Thank you for being the extraordinary person that you are.",
+          "Spontaneous love note: If you could see yourself through my eyes, you'd understand why I can't stop smiling when I think of you.",
+          "Out of nowhere reminder: You are worthy of every beautiful thing life has to offer. Don't ever let anyone make you feel otherwise.",
+          "Because I love you: Your heart is pure gold, your mind is brilliant, and your spirit is unbreakable. You're absolutely perfect."
+        ],
+        actions: ["Do something that makes you smile right now! 😊", "Text someone you care about - spread the love! 💕", "Take a moment to appreciate your own awesomeness ⭐"]
+      }
+    };
+
+    function showMoodBooster() {
+      const hour = new Date().getHours();
+      let moodType;
+      
+      // Determine time-based mood category
+      if (hour < 12) {
+        moodType = 'morning';
+      } else if (hour < 17) {
+        moodType = 'afternoon';
+      } else if (hour < 22) {
+        moodType = 'evening';
+      } else {
+        moodType = 'random';
+      }
+      
+      // Sometimes show random messages or stress relief
+      if (Math.random() < 0.3) {
+        moodType = Math.random() < 0.4 ? 'stressed' : 'random';
+      }
+      
+      const selectedMood = moodBoosterMessages[moodType];
+      const randomMessage = selectedMood.messages[Math.floor(Math.random() * selectedMood.messages.length)];
+      const randomAction = selectedMood.actions[Math.floor(Math.random() * selectedMood.actions.length)];
+      
+      document.getElementById('mood-title').textContent = selectedMood.title;
+      document.getElementById('mood-text').textContent = randomMessage;
+      document.getElementById('mood-action').textContent = randomAction;
+      
+      const moodContainer = document.getElementById('mood-booster');
+      moodContainer.style.display = 'block';
+      moodContainer.scrollIntoView({ behavior: 'smooth' });
+      
+      // Add soothing effects
+      setTimeout(() => {
+        confetti({
+          particleCount: 30,
+          spread: 50,
+          origin: { y: 0.7 },
+          colors: ['#fbc2eb', '#a18cd1', '#fad0c4']
+        });
+        
+        // Gentle sparkles
+        for (let i = 0; i < 4; i++) {
+          setTimeout(() => createSparkle(), i * 300);
+        }
+      }, 300);
+    }
+
+    function getNewMoodMessage() {
+      // Get a random mood type
+      const moodTypes = ['morning', 'afternoon', 'evening', 'stressed', 'random'];
+      const randomMoodType = moodTypes[Math.floor(Math.random() * moodTypes.length)];
+      
+      const selectedMood = moodBoosterMessages[randomMoodType];
+      const randomMessage = selectedMood.messages[Math.floor(Math.random() * selectedMood.messages.length)];
+      const randomAction = selectedMood.actions[Math.floor(Math.random() * selectedMood.actions.length)];
+      
+      document.getElementById('mood-title').textContent = selectedMood.title;
+      document.getElementById('mood-text').textContent = randomMessage;
+      document.getElementById('mood-action').textContent = randomAction;
+      
+      // Add gentle sparkles
+      for (let i = 0; i < 3; i++) {
+        setTimeout(() => createSparkle(), i * 200);
+      }
+    }
+
+    function closeMoodBooster() {
+      document.getElementById('mood-booster').style.display = 'none';
+    }
+
+    // Memory Lane Feature
+    const defaultMemories = [
+      {
+        date: "First Meeting",
+        title: "✨ When Our Eyes First Met",
+        description: "That magical moment when I first saw you and knew my life was about to change forever. Your smile captured my heart instantly.",
+        emoji: "👀💕"
+      },
+      {
+        date: "First Text",
+        title: "📱 Our First Digital Hello",
+        description: "The butterflies I felt when your name first appeared on my phone. Every message since then has been a gift.",
+        emoji: "💬❤️"
+      },
+      {
+        date: "First 'I Love You'",
+        title: "💖 Those Three Little Words",
+        description: "The moment we first said 'I love you' - my heart knew it had found its home. The most beautiful words ever spoken.",
+        emoji: "💕🗣️"
+      },
+      {
+        date: "First Video Call",
+        title: "🎥 Seeing Your Beautiful Face",
+        description: "Our first video call where I got lost in your eyes through the screen. Distance felt meaningless in that moment.",
+        emoji: "📹✨"
+      },
+      {
+        date: "Every Day Since",
+        title: "🌅 Daily Doses of Love",
+        description: "Every single day with you has been a new memory, a new reason to smile, a new chapter in our beautiful love story.",
+        emoji: "📖💝"
+      }
+    ];
+
+    function showMemoryLane() {
+      const memoryContainer = document.getElementById('memory-lane');
+      memoryContainer.style.display = 'block';
+      memoryContainer.scrollIntoView({ behavior: 'smooth' });
+      
+      displayMemoryTimeline();
+      
+      // Add nostalgic effects
+      setTimeout(() => {
+        for (let i = 0; i < 6; i++) {
+          setTimeout(() => createPetal(), i * 400);
+        }
+      }, 500);
+    }
+
+    function displayMemoryTimeline() {
+      const timelineElement = document.getElementById('memory-timeline');
+      const savedMemories = JSON.parse(localStorage.getItem('yuviMemories') || '[]');
+      const allMemories = [...defaultMemories, ...savedMemories];
+      
+      timelineElement.innerHTML = '';
+      
+      if (allMemories.length === 0) {
+        timelineElement.innerHTML = '<p style="color: #666; text-align: center; font-style: italic;">Our journey is just beginning! Add your first memory below. 💕</p>';
+        return;
+      }
+      
+      allMemories.forEach((memory, index) => {
+        const memoryItem = document.createElement('div');
+        memoryItem.style.cssText = `
+          background: rgba(255, 255, 255, 0.9);
+          margin: 15px 0;
+          padding: 20px;
+          border-radius: 15px;
+          box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+          transition: transform 0.3s ease;
+          cursor: pointer;
+          border-left: 4px solid var(--main-color);
+        `;
+        
+        memoryItem.innerHTML = `
+          <div style="display: flex; align-items: center; margin-bottom: 10px;">
+            <span style="font-size: 1.5em; margin-right: 10px;">${memory.emoji}</span>
+            <div>
+              <div style="font-weight: bold; color: var(--main-color); font-size: 1.2em;">${memory.title}</div>
+              <div style="color: #666; font-size: 0.9em; font-style: italic;">${memory.date}</div>
+            </div>
+          </div>
+          <div style="color: #555; line-height: 1.6;">${memory.description}</div>
+        `;
+        
+        memoryItem.onmouseenter = () => memoryItem.style.transform = 'scale(1.02)';
+        memoryItem.onmouseleave = () => memoryItem.style.transform = 'scale(1)';
+        
+        memoryItem.onclick = () => {
+          // Add sparkle effect on click
+          for (let i = 0; i < 3; i++) {
+            setTimeout(() => createSparkle(), i * 150);
+          }
+        };
+        
+        timelineElement.appendChild(memoryItem);
+      });
+    }
+
+    function addNewMemory() {
+      const title = prompt('🌟 What\'s the title of this special memory?');
+      if (!title) return;
+      
+      const date = prompt('📅 When did this happen? (e.g., "Last Tuesday", "January 2024", etc.)');
+      if (!date) return;
+      
+      const description = prompt('💝 Tell me about this beautiful memory...');
+      if (!description) return;
+      
+      const emojis = ['💕', '✨', '🌟', '💖', '🎉', '🌸', '🦋', '🌙', '💫', '🎈', '🎊', '💐', '🌺', '🌼', '🌻'];
+      const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)] + emojis[Math.floor(Math.random() * emojis.length)];
+      
+      const newMemory = {
+        date: date,
+        title: title,
+        description: description,
+        emoji: randomEmoji,
+        created: new Date().toISOString()
+      };
+      
+      const savedMemories = JSON.parse(localStorage.getItem('yuviMemories') || '[]');
+      savedMemories.push(newMemory);
+      localStorage.setItem('yuviMemories', JSON.stringify(savedMemories));
+      
+      // Refresh the timeline
+      displayMemoryTimeline();
+      
+      // Celebration effect
+      setTimeout(() => {
+        confetti({
+          particleCount: 60,
+          spread: 70,
+          origin: { y: 0.6 },
+          colors: ['#ff4f81', '#ff9a9e', '#fbc2eb']
+        });
+        alert('💕 Beautiful memory added to our journey! Our story keeps getting more amazing!');
+      }, 200);
+    }
+
+    function closeMemoryLane() {
+      document.getElementById('memory-lane').style.display = 'none';
+    }
+
+    // Add welcoming message
+    setTimeout(() => {
+      const welcomeMessage = document.createElement('div');
+      welcomeMessage.style.cssText = `
+        position: fixed;
+        bottom: 30px;
+        right: 30px;
+        background: rgba(255, 79, 129, 0.95);
+        color: white;
+        padding: 15px 25px;
+        border-radius: 25px;
+        z-index: 100;
+        animation: fadeIn 1s ease-in;
+        cursor: pointer;
+        font-weight: bold;
+        box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        max-width: 250px;
+        text-align: center;
+        font-size: 0.9em;
+      `;
+      welcomeMessage.innerHTML = '✨ I\'ve added new surprises for you! Check out the mood booster and memory lane! 💕';
+      welcomeMessage.onclick = () => welcomeMessage.remove();
+      
+      document.body.appendChild(welcomeMessage);
+      
+      // Auto-remove after 10 seconds
+      setTimeout(() => {
+        if (welcomeMessage.parentNode) welcomeMessage.remove();
+      }, 10000);
+    }, 6000);
+
   </script>
 </body>
 </html>
